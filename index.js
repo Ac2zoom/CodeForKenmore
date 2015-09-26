@@ -16,11 +16,15 @@ var appToken = 'KIfXfEDIcraE5i0dxIb6YkzHN';
 
 var query = "'MEDICAL OFFICE (341)'";
 var query2 = "'MULTIPLE RESIDENCES ASSISTED LIVING (LOW RISE)'";
+var query3 = "'CONVALESCENT HOSPITAL (313)'";
+var query4 = "'GROUP CARE HOME (424)'";
+var query5 = "'DENTAL OFFICE/CLINIC (444)'";
+var query6 = "'HOSPITAL (331)'";
 
 function a(inputQuery){
     $.getJSON("https://kenmorewa.data.socrata.com/resource/b6gg-b3a4.json?$$app_token=" + appToken + "&$where=predominant_use=" + inputQuery +  " AND zip_code='98028'",function(data) {
         for(var i = 0; i < data.length; i++){
-            L.marker([data[i].latitude, data[i].longitude]).addTo(map);
+            L.marker([data[i].latitude, data[i].longitude]).addTo(map).bindPopup(inputQuery);
         }
     });
 }
