@@ -26,6 +26,16 @@ function a(inputQuery){
         for(var i = 0; i < data.length; i++){
             L.marker([data[i].latitude, data[i].longitude]).addTo(map).bindPopup(inputQuery);
         }
+        console.log(data);
+    });
+}
+
+function b(inputQuery){
+    $.getJSON("https://kenmorewa.data.socrata.com/resource/b6gg-b3a4.json?$$app_token=" + appToken + "&$where=predominant_use=" + inputQuery +  " AND zip_code='98028'",function(data) {
+        for(var i = 0; i < data.length; i++){
+            L.circle([data[i].latitude, data[i].longitude], 805).addTo(map).bindPopup(inputQuery);
+        }
+        console.log(data);
     });
 }
 
